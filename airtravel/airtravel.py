@@ -74,25 +74,37 @@ class Flight:
 
 
 class Aircraft:
-    def __init__(self, regestiration, model, num_rows, num_seats_per_row):
-        self._registration = regestiration
-        self._model = model
-        self._num_rows = num_rows
-        self._num_seats_per_row = num_seats_per_row
+    def __init__(self, registration):
+        self._registration = registration
 
-    def registeration(self):
+    def num_seats(self):
+        rows, row_seats = self.seating_plan()
+        return len(rows) * len(row_seats)
+
+    def registration(self):
         return self._registration
 
+
+class AirbusA319(Aircraft):
+
     def model(self):
-        return self._model
+        return "Airbus A319"
 
     def seating_plan(self):
-        return (range(1, self._num_rows+1), "ABCDEFGHJK"[:self._num_seats_per_row])
+        return range(1, 23), "ABCDEF"
+
+
+class Boeing777(Aircraft):
+
+    def model(self):
+        return "Boeing 777"
+
+    def seating_plan(self):
+        return range(1, 56), "ABCDEFGHJK"
 
 
 def make_flight():
-    f = Flight("BA758", Aircraft("G-EUPT", "Airbus A319",
-                                 num_rows=22, num_seats_per_row=6))
+    f = Flight("MO1999", Boeing777("mmmm"))
     f.allocate_seat('12A', 'Guido van Rossum')
     f.allocate_seat('15F', 'Bjarne Stroustrup')
     f.allocate_seat('15E', 'Anders Hejlsberg')
