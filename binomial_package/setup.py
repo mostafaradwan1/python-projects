@@ -1,7 +1,7 @@
 from setuptools import setup
 
-setup(name='distributions',
-      version='0.1',
+setup(name='prob_tools',
+      version='1.2',
       description='Gaussian distributions',
-      packages=['distributions'],
+      packages=['prob_tools'],
       zip_safe=False)
